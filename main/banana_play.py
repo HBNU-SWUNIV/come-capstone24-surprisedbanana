@@ -39,7 +39,7 @@ def smooth(x,beta): # Kaiser Window Smoothing
     return y[5:len(y)-5]
 
 
-model = load('model222.joblib')
+model = load('model111.joblib')
 
 
 def connect_to_unity():
@@ -99,7 +99,7 @@ try:
                     probabilities = model.predict_proba(result)
 
                     # 임계값 설정 (예: 70% 이상일 때만 예측 결과를 사용)
-                    threshold = 0.77
+                    threshold = 0.8
                     # 각 샘플의 확률을 순회
                     
                     # 각 클래스에 대한 예측 확률 중 가장 높은 값을 가져옵니다.
@@ -116,33 +116,36 @@ try:
 
                     if count == 0:
                         rock_count=0
-                        print("rest")
+                        print("rest", end=" ")
                     elif count == 1:
                         rock_count+=1
-                        print("rock")
+                        print("rock", end=" ")
                     elif count == 2:
                         rock_count=0
-                        print("scissors")
+                        print("scissors", end=" ")
                     elif count == 3:
                         rock_count=0
-                        print("right")
+                        print("right", end=" ")
                     elif count == 4:
                         rock_count=0
-                        print("left")
+                        print("left", end=" ")
                     elif count == 5:
                         rock_count=0
-                        print("fire")
+                        print("fire", end=" ")
                     elif count == 6:
                         rock_count=0
-                        print("paper")
+                        print("paper", end=" ")
                     elif count == 7:
                         rock_count=0
-                        print("paper_left")
+                        print("paper_left", end=" ")
                     elif count == 8:
                         rock_count=0
-                        print("paper_right")
+                        print("paper_right", end=" ")
+
+                    print(max_prob)
+
                         
-                    if rock_count >= 30:
+                    if rock_count >= 20:
                         sock.sendall(str(count+200).encode())
                     elif prev == count:
                         sock.sendall(str(count).encode())
@@ -150,7 +153,7 @@ try:
                         sock.sendall(str(count+100).encode())
                     prev = count
 
-                    data_batch = data_batch[20:]
+                    data_batch = data_batch[24:]
 
             skip = 0
 
