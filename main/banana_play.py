@@ -39,7 +39,7 @@ def smooth(x,beta): # Kaiser Window Smoothing
     return y[5:len(y)-5]
 
 
-model = load('model777.joblib')
+model = load('model222.joblib')
 
 
 def connect_to_unity():
@@ -99,7 +99,7 @@ try:
                     probabilities = model.predict_proba(result)
 
                     # 임계값 설정 (예: 70% 이상일 때만 예측 결과를 사용)
-                    threshold = 0.8
+                    threshold = 0.77
                     # 각 샘플의 확률을 순회
                     
                     # 각 클래스에 대한 예측 확률 중 가장 높은 값을 가져옵니다.
@@ -108,11 +108,12 @@ try:
 
                     # 가장 높은 확률 값이 threshold 이상인지 확인
                     if max_prob >= threshold:
-                        count = max_arg
-                            
+                        count = max_arg   
+   
                     # 0: rest, 1:rock, 2: scissors, 3: right, 4: left, 5: fire, 6: paper, 7: paper_left, 8: paper_right
                     # +100 : start
-                    
+                
+
                     if count == 0:
                         rock_count=0
                         print("rest")
